@@ -1,0 +1,14 @@
+<hibernate-mapping package="zerry.hdfWebCollector.entity">
+
+	<class name="Office" table="t_office">
+		<id name="id">
+			<!--  <generator class="identity" />   -->
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="name" column="NAME" length="255" />
+		<property name="from" column="DEPARTMENT" length="255" />
+		
+	</class>
+
+</hibernate-mapping>
