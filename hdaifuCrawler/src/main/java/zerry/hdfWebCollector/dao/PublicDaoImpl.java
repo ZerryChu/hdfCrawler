@@ -10,8 +10,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+
+//spring data
 @SuppressWarnings("unchecked")
-@Repository("publicDao")
+//@Repository("publicDao")
 public class PublicDaoImpl<T> implements PublicDao<T> {
 
 	private SessionFactory sessionFactory;

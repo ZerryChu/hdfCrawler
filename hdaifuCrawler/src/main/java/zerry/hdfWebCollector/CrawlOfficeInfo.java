@@ -28,12 +28,11 @@ public class CrawlOfficeInfo extends CrawlInfo {
 		}
 	}
 	
-	public void visit(Page page) {
+	public int visit(Page page) {
 		// String keyword = page.meta("keyword");
 		Elements results = page.select(".jblb .blue");
 		// System.out.println(results.size());
 
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		for (int rank = 0; rank < results.size(); rank++) {
 			Element result = results.get(rank);
 			System.out.println(result.text());
@@ -55,7 +54,7 @@ public class CrawlOfficeInfo extends CrawlInfo {
 			 * next.add(datum);
 			 */
 		}
-
+		return results.size();
 	}
 	
 }

@@ -13,6 +13,9 @@ import zerry.hdfWebCollector.dao.PublicDao;
 import zerry.hdfWebCollector.entity.Doctor;
 import zerry.hdfWebCollector.model.Page;
 
+
+//http://www.haodf.com/faculty/DE4rO-XCoLUEQ19Fh7UcoLDoWk.htm
+//http://www.haodf.com/faculty/DE4rO-XCoLUEQ19Fh7UcoLDoWk/menzhen_2.htm
 public class CrawlDoctorInfo extends CrawlInfo {
 	
 	public void save(Doctor doctor) {
@@ -28,15 +31,17 @@ public class CrawlDoctorInfo extends CrawlInfo {
 		}
 	}
 	
-	public void visit(Page page) {
+	public int visit(Page page) {
 		// String keyword = page.meta("keyword");
 		Elements results = page.select(".good_doctor_list_td");
 		// System.out.println(results.size());
 
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		int iter = 0;
 		Doctor doctor = null;
-		for (int rank = 0; rank < results.size(); rank++) {
+		int resultSize = results.size();
+		if (resultSize == 0)
+			return 0;
+		for (int rank = 0; rank < resultSize; rank++) {
 			Element result = results.get(rank);
 
 			String text = result.text();
@@ -59,7 +64,6 @@ public class CrawlDoctorInfo extends CrawlInfo {
 			}
 			iter++;
 			iter %= 4;
-
 			/*
 			 * 无后续节点 CrawlDatum datum = new CrawlDatum(result.attr("abs:href"))
 			 * .meta("keyword", keyword) .meta("pageNum", pageNum + "")
@@ -68,6 +72,6 @@ public class CrawlDoctorInfo extends CrawlInfo {
 			 * next.add(datum);
 			 */
 		}
-
+		return resultSize;
 	}
 }
