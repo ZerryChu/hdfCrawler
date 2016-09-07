@@ -137,28 +137,14 @@ public class Crawler extends Thread {
 		CrawlDatum crawlDatum = (CrawlDatum) ctx.getBean("startPageCrawlDatum");
 		new Crawler().crawlUrlBySubjects(crawlDatum, ctx);
 	}
-
-	// 哼，掐掉我的爬虫，我从断点处继续爬！
-	public static void takeAction2() {
-		String url = "http://haoping.haodf.com/keshi/DE4r0PiRvNoMFwIj8vHRbuflCII2Ip/daifu.htm?prov=&p=265";
-		CrawlDatum newCrawlDatum = new CrawlDatum(url);
-		try {
-			Crawler crawler = new Crawler();
-			crawler.setFlag(1);
-			crawler.execute(newCrawlDatum, "心血管内科", 265);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	public static void main(String[] args) {
 		try {
-			// startCrawling();
-			takeAction2();
+			startCrawling();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			// 处理超时时间等各类事件（加入断点）, StopPointSystem
 		}
 	}
 }
